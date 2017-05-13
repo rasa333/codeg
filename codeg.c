@@ -95,14 +95,12 @@ main(int argc, char **argv)
   n = 0;
   do {
     code = mkname(prefix, charset, length);
-    if (hash_lookup(code)) {
-      free(code);
-      continue;
-    } else {
+    if (!hash_lookup(code)) {
       hash_install(code);
       printf("%s\n", code);
       n++;
     }
+    free(code);
   } while(n < count);
 
   exit(0);
