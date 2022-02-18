@@ -11,7 +11,7 @@ prg     = codeg
 objects        		     := $(patsubst %.c,%.o,$(wildcard *.c))
 
 
-$(prg)	: $(objects)
+all $(prg)	: $(objects)
 	$(CC) $(LDFLAGS) $(CFLAGS) -o $(prg) $(objects) $(LIBS)
 
 clean	   : 

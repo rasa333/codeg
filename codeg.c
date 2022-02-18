@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <getopt.h>
+#include <time.h>
 
 #include "defs.h"
 #include "hash.h"
@@ -12,11 +14,11 @@ extern int   optind;
 
 static void usage(char *prefix, char *charset)
 {
-  printf("Usage: codeg [option(s)...] length count\n");
-  printf(" -p prefix     set code prefix [%s]\n", prefix == NULL ? "" : prefix);
-  printf(" -c charset    set charset-string [%s]\n", charset == NULL ? DEFAULT_CHARSET : charset);
-  printf(" -r file       read code list from file\n");
-  printf(" -h            this help\n");
+    printf("Usage: codeg [option(s)...] length count\n");
+    printf(" -p prefix     set code prefix [%s]\n", prefix == NULL ? "" : prefix);
+    printf(" -c charset    set charset-string [%s]\n", charset == NULL ? DEFAULT_CHARSET : charset);
+    printf(" -r file       read code list from file\n");
+    printf(" -h            this help\n");
 }
 
 
@@ -42,14 +44,14 @@ static char *mkname(char *prefix, char *charset, int length)
 
 
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   int opt, count, n, length;
   char *prefix = NULL, *charset = NULL, *file = NULL, *code, buf[1024], *p;
   FILE *f;
 
   srand48(time(NULL));
-  while((opt = getopt(argc, argv, "p:c:r:")) != -1) {
+  while((opt = getopt(argc, argv, "p:c:r:h")) != -1) {
     switch(opt) {
     case 'p':
       prefix = strdup(optarg);

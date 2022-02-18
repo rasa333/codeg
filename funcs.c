@@ -12,6 +12,7 @@
 #include <math.h>
 #include <pwd.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "defs.h"
 
@@ -39,11 +40,11 @@ char **split_quoted_words(char *str, char **arg, int *cnt, int (*trunc)(char c))
 
     if (*str != 0) {
       while (*str && !(*trunc)(*str) && *str != '"')
-	tmp[i++] = *str++;
+	    tmp[i++] = *str++;
       if (*str == '"') {
-	str++;
-	while(*str && *str != '"') 
-	  tmp[i++] = *str++;
+	    str++;
+	    while(*str && *str != '"')
+	        tmp[i++] = *str++;
 	if (*str)
 	  str++;
       }
@@ -117,4 +118,3 @@ inline char *trim(char *s)
  
   return s;
 }
-

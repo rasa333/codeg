@@ -57,10 +57,7 @@ extern char **split_quoted_words(char *str, char **arg, int *cnt, int (*trunc)(c
 
 // file.c
 
-extern inline off_t getfilesize(char *name);
-extern inline off_t exists(char *file);
 extern int mkdirs(char *dname, int mode);
 extern int fget_logline(char *buf, size_t size, FILE *f, int follow_flag);
 extern int fget_logline_return(char *buf, size_t size, FILE *f, int follow_flag);
-extern inline char *basename(char *name);
 extern char *dirname(char *path);
