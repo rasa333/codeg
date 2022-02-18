@@ -82,17 +82,16 @@ char **split_quoted_words(char *str, char **arg, int *cnt, int (*trunc)(char c))
 
 char **list_free(char **a)
 {
-  int i;
+    int i;
 
-  if (a == NULL)
-    return NULL;
+    if (a == NULL)
+        return NULL;
   
-  for (i = 0 ; a[i] != NULL ; i++) {
-    free(a[i]);
-  }
-  free(a);
+    for (i = 0 ; a[i] != NULL ; i++)
+        free(a[i]);
+    free(a);
 
-  return NULL;
+    return NULL;
 }
 
 
@@ -100,21 +99,21 @@ char **list_free(char **a)
 
 inline char *trim(char *s)
 {
-  char *p;
+    char *p;
  
-  while(isspace(*s))
-    s++;
+    while(isspace(*s))
+        s++;
  
-  if (!*s)
-    return s;
+    if (!*s)
+        return s;
  
-  p = s;
-  while(*p)
-    p++;
-  p--;
-  while(isspace(*p))
+    p = s;
+    while(*p)
+        p++;
     p--;
-  *(p+1) = 0;
+    while(isspace(*p))
+        p--;
+    *(p+1) = 0;
  
-  return s;
+    return s;
 }
