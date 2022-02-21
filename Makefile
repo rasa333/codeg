@@ -1,5 +1,5 @@
 CFLAGS  = -O3
-LDFLAGS = 
+LDFLAGS = -s
 LIBS    = -lm
 CC      = gcc
 prg     = codeg
