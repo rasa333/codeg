@@ -1,28 +1,14 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <syslog.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <pwd.h>
-#include <sys/types.h>
-#include <time.h>
-#include <math.h>
-#include <pwd.h>
 #include <string.h>
 #include <ctype.h>
 
 #include "defs.h"
 
 
-
 int is_slash(char c)
 {
   return c == '/';
 }
-
 
 char **split_quoted_words(char *str, char **arg, int *cnt, int (*trunc)(char c))
 {
@@ -75,7 +61,6 @@ char **split_quoted_words(char *str, char **arg, int *cnt, int (*trunc)(char c))
   return arg;
 }
 
-
 /*
  * frees a char array (char **); last element must be NULL
  */
@@ -93,9 +78,6 @@ char **list_free(char **a)
 
     return NULL;
 }
-
-
-
 
 inline char *trim(char *s)
 {
