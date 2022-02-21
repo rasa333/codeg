@@ -7,58 +7,58 @@
 
 int is_slash(char c)
 {
-  return c == '/';
+    return c == '/';
 }
 
 char **split_quoted_words(char *str, char **arg, int *cnt, int (*trunc)(char c))
 {
-  char *tmp = malloc(strlen(str)+1);
-  int i = 0, j = 0;
-  
-  if (arg == NULL) {
-    arg = malloc(sizeof(char *));
-    arg[0] = NULL;
-  }
-  
-  while (*str) {
-    while(*str && (*trunc)(*str) && *str != '"') 
-      str++;
+    char *tmp = malloc(strlen(str) + 1);
+    int i = 0, j = 0;
 
-    if (*str != 0) {
-      while (*str && !(*trunc)(*str) && *str != '"')
-	    tmp[i++] = *str++;
-      if (*str == '"') {
-	    str++;
-	    while(*str && *str != '"')
-	        tmp[i++] = *str++;
-	if (*str)
-	  str++;
-      }
-      tmp[i] = 0;
-      if (arg[j] == NULL) 
-	arg[j] = malloc(i + 1); 
-      else 
-	arg[j] = realloc(arg[j], i + 1);
-      strcpy(arg[j++], tmp);
-      i = 0;
+    if (arg == NULL) {
+        arg = malloc(sizeof(char *));
+        arg[0] = NULL;
     }
 
-    if (j > (*cnt)) {
-      arg = realloc(arg, sizeof(char *) * (j + 1)); 
-      arg[j] = NULL;
-    }
-  }
-  if (j < (*cnt)) {
-    for (i = j ; i < (*cnt) ; i++) {
-      free(arg[i]);
-      arg[i] = NULL;
-    }
-    arg = realloc(arg, sizeof(char *) * (j + 1));
-  }
-  (*cnt) = j;
-  free(tmp);
+    while (*str) {
+        while (*str && (*trunc)(*str) && *str != '"')
+            str++;
 
-  return arg;
+        if (*str != 0) {
+            while (*str && !(*trunc)(*str) && *str != '"')
+                tmp[i++] = *str++;
+            if (*str == '"') {
+                str++;
+                while (*str && *str != '"')
+                    tmp[i++] = *str++;
+                if (*str)
+                    str++;
+            }
+            tmp[i] = 0;
+            if (arg[j] == NULL)
+                arg[j] = malloc(i + 1);
+            else
+                arg[j] = realloc(arg[j], i + 1);
+            strcpy(arg[j++], tmp);
+            i = 0;
+        }
+
+        if (j > (*cnt)) {
+            arg = realloc(arg, sizeof(char *) * (j + 1));
+            arg[j] = NULL;
+        }
+    }
+    if (j < (*cnt)) {
+        for (i = j; i < (*cnt); i++) {
+            free(arg[i]);
+            arg[i] = NULL;
+        }
+        arg = realloc(arg, sizeof(char *) * (j + 1));
+    }
+    (*cnt) = j;
+    free(tmp);
+
+    return arg;
 }
 
 /*
@@ -71,8 +71,8 @@ char **list_free(char **a)
 
     if (a == NULL)
         return NULL;
-  
-    for (i = 0 ; a[i] != NULL ; i++)
+
+    for (i = 0; a[i] != NULL; i++)
         free(a[i]);
     free(a);
 
@@ -82,20 +82,20 @@ char **list_free(char **a)
 inline char *trim(char *s)
 {
     char *p;
- 
-    while(isspace(*s))
+
+    while (isspace(*s))
         s++;
- 
+
     if (!*s)
         return s;
- 
+
     p = s;
-    while(*p)
+    while (*p)
         p++;
     p--;
-    while(isspace(*p))
+    while (isspace(*p))
         p--;
-    *(p+1) = 0;
- 
+    *(p + 1) = 0;
+
     return s;
 }
