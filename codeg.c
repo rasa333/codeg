@@ -104,6 +104,9 @@ int main(int argc, char **argv)
         free(code);
     } while (n < count);
     hash_free();
+    free(charset);
+    if (prefix != NULL)
+        free(prefix);
 
     exit(0);
 }
